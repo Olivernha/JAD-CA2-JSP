@@ -1,18 +1,14 @@
-# Use Tomcat base image
 FROM tomcat:9-jdk11
 
-# Remove default Tomcat applications
+# Remove default webapps
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Create directory for your application
-WORKDIR /usr/local/tomcat/webapps
+# Create the ROOT directory
+RUN mkdir -p /usr/local/tomcat/webapps/ROOT
 
-# Copy your WAR file into webapps directory
-# Note: Replace your-app.war with your actual WAR file name
-COPY target/CA1.war webapps/ROOT.war
+# Copy your WAR file - make sure your WAR file is in the same folder as this Dockerfile
+COPY *.war /usr/local/tomcat/webapps/ROOT.war
 
-# Expose port 8080
 EXPOSE 8080
 
-# Start Tomcat
 CMD ["catalina.sh", "run"]
