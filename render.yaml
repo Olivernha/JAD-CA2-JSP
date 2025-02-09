@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: JAD-CA2
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /health.txt
+    healthCheckTimeout: 5s
+    envVars:
+      - key: JAVA_OPTS
+        value: "-Xmx512m"
+    disk:
+      name: data
+      mountPath: /usr/local/tomcat/logs
+      sizeGB: 1
