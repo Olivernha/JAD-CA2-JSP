@@ -3,21 +3,23 @@ FROM tomcat:9-jdk11
 # Remove default webapps
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Create necessary directories
+# Create the ROOT directory
 RUN mkdir -p /usr/local/tomcat/webapps/ROOT
 
-# Copy WAR file
+# Copy your WAR file
 COPY *.war /usr/local/tomcat/webapps/ROOT.war
 
-# Enable JSP compilation
-RUN mkdir -p /usr/local/tomcat/work/Catalina/localhost/
+# Create a health check file
+RUN echo "OK" > /usr/local/tomcat/webapps/ROOT/health.txt
 
-# Add logging configuration
-RUN echo "org.apache.jasper.servlet.level = FINE" >> /usr/local/tomcat/conf/logging.properties
-
-# Configure Tomcat to show errors
-COPY web.xml /usr/local/tomcat/conf/web.xml
+# Configure shutdown port and command
+RUN sed -i 's/shutdown="SHUTDOWN"/shutdown="RENDERSHUTDOWN"/g' /usr/local/tomcat/conf/server.xml && \
+    sed -i 's/port="8005"/port="-1"/g' /usr/local/tomcat/conf/server.xml
 
 EXPOSE 8080
+
+# Add healthcheck
+HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
+  CMD curl -f http://localhost:8080/health.txt || exit 1
 
 CMD ["catalina.sh", "run"]
