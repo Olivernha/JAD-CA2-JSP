@@ -83,11 +83,11 @@
             countdown--;
             setTimeout(updateTimer, 1000);
         } else {
-            window.location.href = "http://localhost:8080/CA2/user/home.jsp";
+            window.location.href = "http://localhost:8080/CA1/user/home.jsp";
         }
     }
     function redirectHome() {
-        window.location.href = "http://localhost:8080/CA2/user/home.jsp";
+        window.location.href = "http://localhost:8080/CA1/user/home.jsp";
     }
     updateTimer();
 </script>

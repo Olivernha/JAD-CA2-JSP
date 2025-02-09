@@ -1,13 +1,17 @@
-# Use an official Tomcat image
-FROM tomcat:9.0
+# Use Tomcat base image
+FROM tomcat:9-jdk11
 
-# Remove the default webapps directory
+# Remove default Tomcat applications
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copy your WAR file into the webapps directory
-COPY CA1.war /usr/local/tomcat/webapps/ROOT.war
+# Create directory for your application
+WORKDIR /usr/local/tomcat/webapps
 
-# Expose the default Tomcat port
+# Copy your WAR file into webapps directory
+# Note: Replace your-app.war with your actual WAR file name
+COPY target/CA1.war webapps/ROOT.war
+
+# Expose port 8080
 EXPOSE 8080
 
 # Start Tomcat
