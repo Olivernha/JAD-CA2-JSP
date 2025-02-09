@@ -1,0 +1,114 @@
+body{
+    margin: 0;
+    font-family: "Urbanist", sans-serif;
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+.container{
+    max-width: 1140px;
+    margin: auto;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+ 
+.section-title{
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 40px;
+}
+.section-title h1{
+    display: inline-block;
+    font-size: 35px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 5px;
+    position: relative;
+}
+.section-title h1:before{
+    content: '';
+    left: 0;
+    position: absolute;
+    height: 2px;
+    right: 32%;
+    background-color: #febd01;
+    bottom: 0px;
+}
+.text-center{
+    text-align: center!important;
+}
+.text-right{
+    text-align: right!important;
+}
+.category{
+    background-color: white;
+    padding: 50px 7px;
+}
+.category .section-title h1:before{
+    left: 30%;
+}
+.category .filter-buttons{
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+.category .filter-buttons ul{
+    list-style: none;
+    text-align: center;
+    padding: 0;
+}
+.category .filter-buttons ul li{
+    color: #000000;
+    font-weight: 500;
+    font-size: 16px;
+    display: inline-block;
+    margin: 0px 8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding-bottom: 0px;
+}
+.category .filter-buttons ul li.active{
+    color: #febd01;
+    border-bottom: 2px solid #febd01;
+}
+.category .categories{
+    flex: 0 0 100%;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.category .categories .item{
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+    position: relative;
+    padding: 8px;
+  
+}
+.category .categories .item .inner{
+    position: relative;
+}
+.category .categories .item img{
+    width: 100%;
+    display: block;
+}
+ 
+@media(max-width:767px){
+ 
+    .category .categories .item{
+        flex:0 0 50% ;
+        max-width: 50%;
+        position: relative;
+        padding:8px ;
+    }
+ 
+}
+@media(max-width:500px){
+ 
+    .category .categories .item{
+        flex:0 0 100% ;
+        max-width: 100%; }
+}

@@ -1,0 +1,522 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: #f0f2f5;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .dashboard {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 0.5s ease-out forwards;
+    }
+
+    .header {
+      background:  hsla(235, 66%, 30%, 1);
+      padding: 2rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('/api/placeholder/1200/300') center/cover;
+      opacity: 0.1;
+    }
+.back-btn {
+  position: absolute;
+  top: 2rem;
+  right: 11rem;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(-2px);
+}
+    .edit-btn {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 2;
+    }
+
+    .edit-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+	.view-history-btn{
+	    position: absolute;
+	    top: 5rem;
+	    right: 2rem;
+	    background: rgba(255, 255, 255, 0.2);
+	    border: none;
+	    padding: 0.5rem 1rem;
+	    border-radius: 0.5rem;
+	    color: white;
+	    cursor: pointer;
+	    transition: all 0.3s ease;
+	    display: flex;
+	    align-items: center;
+	    gap: 0.5rem;
+	    z-index: 2;
+	}
+
+.view-history-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+}
+.logout-btn{
+	    position: absolute;
+	    top: 8rem;
+	    right: 2rem;
+	    background: rgba(255, 255, 255, 0.2);
+	    border: none;
+	    padding: 0.5rem 1rem;
+	    border-radius: 0.5rem;
+	    color: white;
+	    cursor: pointer;
+	    transition: all 0.3s ease;
+	    display: flex;
+	    align-items: center;
+	    gap: 0.5rem;
+	    z-index: 2;
+	}
+
+.logout-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+}
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      overflow: hidden;
+      animation: pulse 2s infinite;
+      position: relative;
+    }
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Ensure image covers the circle properly */
+    display: block;  /* Remove any extra spacing */
+}
+
+    .avatar-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      cursor: pointer;
+    }
+
+    .avatar:hover .avatar-overlay {
+      opacity: 1;
+    }
+
+    .profile-info h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: slideIn 0.5s ease-out forwards;
+    }
+
+    .stat-card:nth-child(1) { animation-delay: 0.1s; }
+    .stat-card:nth-child(2) { animation-delay: 0.2s; }
+    .stat-card:nth-child(3) { animation-delay: 0.3s; }
+    .stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #0083b0;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: #64748b;
+      font-size: 0.875rem;
+    }
+
+    .sections {
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .section {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: slideIn 0.5s ease-out forwards;
+    }
+
+    .section:nth-child(1) { animation-delay: 0.5s; }
+    .section:nth-child(2) { animation-delay: 0.6s; }
+
+    .section h2 {
+      color: #0f172a;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .service-item, .booking-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      margin-bottom: 0.5rem;
+      background: #f8fafc;
+      border-radius: 0.5rem;
+      transition: transform 0.2s;
+    }
+
+    .service-item:hover, .booking-item:hover {
+      transform: translateX(10px);
+      background: #f1f5f9;
+    }
+
+    .feedback {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #64748b;
+    }
+
+    .star {
+      color: #fbbf24;
+    }
+
+    /* Modal styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      width: 90%;
+      max-width: 600px;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active .modal {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .modal h2 {
+      margin-bottom: 1.5rem;
+      color: #0f172a;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #64748b;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #0083b0;
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: #0083b0;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #64748b;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #10B981;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      z-index: 2000;
+      animation: slideInRight 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideOutRight {
+      from {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+/* General notification styling */
+.notification {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    margin: 20px 0;
+    border-radius: 8px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    width: 100%;
+    max-width: 600px;
+    margin: 15px auto;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    background-color: #fff;
+}
+
+/* Success notification */
+.notification.success {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border-left: 8px solid #388E3C; /* Darker green left border */
+}
+
+/* Error notification */
+.notification.error {
+    background-color: #f44336; /* Red */
+    color: white;
+    border-left: 8px solid #d32f2f; /* Darker red left border */
+}
+
+/* Info notification */
+.notification.info {
+    background-color: #2196F3; /* Blue */
+    color: white;
+    border-left: 8px solid #1976D2; /* Darker blue left border */
+}
+
+/* Close button style */
+.notification .close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 20px;
+    padding: 0;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Hover effect for close button */
+.notification .close-btn:hover {
+    color: #ddd;
+}
+
+/* Fade-out effect */
+.notification.fade-out {
+    opacity: 0;
+    transform: translateX(100%);  /* Slide out to the right */
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* Icon and text layout */
+.notification .icon {
+    margin-right: 15px;
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Optional animation for notification appearance */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.notification {
+    animation: slideIn 0.5s ease-in-out;
+}
+
+.cancel-btn {
+    background-color: #d33;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.cancel-btn:hover {
+    background-color: #b32d2d;
+}
+
+    
