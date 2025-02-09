@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar webapp-runner.jar --port $PORT your-app.war
+web: java $JAVA_OPTS -jar webapp-runner.jar --port $PORT CA1.war
